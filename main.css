@@ -1,20 +1,16 @@
-.svg_wrapper {
-  float: left;
+body {
+  font: 10px sans-serif;
 }
 
-.data-input {
-  float: left;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
-.transparent {
-
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
-
-#svg {
-  position: fixed;
-  pointer-events: none;
-}
-
-/*button {
-  float:left;
-}*/

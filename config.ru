@@ -1,10 +1,5 @@
 require 'sinatra'
 
-
-get '/data.csv' do
-  send_file File.open('data.csv')
-end
-
 get '/main.html' do
   File.read('main.html')
 end
