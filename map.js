@@ -8,7 +8,9 @@ function initialize() {
   var elemId = "map-canvas";
   var mapOptions = { mapTypeId: mapType };
   map = new google.maps.Map(document.getElementById(elemId), mapOptions);
-  var renderer = new google.maps.DirectionsRenderer();
+  var renderer = new google.maps.DirectionsRenderer({
+    markerOptions: { visible: false }
+  });
   renderer.setMap(map);
   var router = new google.maps.DirectionsService();
   router.route({
