@@ -1,0 +1,20 @@
+.svg_wrapper {
+  float: left;
+}
+
+.data-input {
+  float: left;
+}
+
+.transparent {
+
+}
+
+#svg {
+  position: fixed;
+  pointer-events: none;
+}
+
+/*button {
+  float:left;
+}*/
