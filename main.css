@@ -14,3 +14,47 @@ body {
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+.photo-container {
+  width: 500px;
+  /*background-size: cover;*/
+  z-index: 1000;
+}
+
+.photo {
+  width: 100%;
+  padding: 50px;
+}
+
+.main-svg {
+  /*position: fixed;*/
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+html { 
+  height: 100% 
+}
+
+body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0 
+}
+
+.map-wrapper {
+  height: 100%; 
+  width: 100%;
+  /*left: 600px;*/
+  position: fixed;
+  z-index: -1000;
+}
+
+#map-canvas {
+  height: 100%; 
+  width: 100%;
+  /*z-index: -1000;*/
+}
