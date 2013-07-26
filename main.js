@@ -2,27 +2,36 @@ var onScroll = function(e) {
   update();
 };
 
-var update = function(data) {
-  var divs = $('.photo-container');
-  startCoords = [];
-  endCoords = [];
-  var data = [];
-  for (var i = 0; i < divs.length; i++) {
-    $div = $(divs[i]);
-    startCoords.push(
-      {"y": $div.offset().top + $div.height() / 2 - $(window).scrollTop(),
-       "x": $div.offset().left + $div.width() - $(window).scrollLeft()});
+var $photoContainers;
+var $gmimaps;
 
-    $elem = $('#gmimap' + i).prev();
-    endCoords.push({"y": $elem.offset().top + $elem.height() - $(window).scrollTop(),
-       "x": $elem.offset().left + $elem.width() / 2 - $(window).scrollLeft()});
+var setup = function() {
+  $photoContainers = $('.photo-container');
+  $gmimaps = $("[id^=gmimap]")
+}
+
+var update = function() {
+  var startCoords = [];
+  var endCoords = [];
+  var data = [];
+  for (var i = 0; i < $photoContainers.length; i++) {
+    $div = $($photoContainers[i]);
+
+    if ($div.data('map-index') || $div.data('map-index') == "0") {
+      var startCoord = 
+        {"y": $div.offset().top + $div.height() / 2 - $(window).scrollTop(),
+         "x": $div.offset().left + $div.width() - $(window).scrollLeft()};
+
+      // $elem = $('#gmimap' + $div.data('map-index')).prev();
+      $elem = $gmimaps.filter('#gmimap' + $div.data('map-index')).prev();
+      // debugger;
+      var endCoord = {"y": $elem.offset().top + $elem.height() - $(window).scrollTop(),
+          "x": $elem.offset().left + $elem.width() / 2 - $(window).scrollLeft()};
+
+      data.push ([startCoord, endCoord]);
+    }
   }
   
-  // Create the line endpoints
-  for (var i = 0; i < startCoords.length; i++) {
-    data.push ([startCoords[i], endCoords[i]]);
-  }
-
 
   var line = d3.svg.line()
     .interpolate(interpolateSankey)
@@ -33,9 +42,9 @@ var update = function(data) {
 
   path.attr('d', line);
 
-  // path.enter().append('path')
-  //     .attr('class', 'line')
-  //     .attr('d', line);
+  path.enter().append('path')
+      .attr('class', 'line')
+      .attr('d', line);
 
 };
 
@@ -58,4 +67,5 @@ var svg = d3.select("svg");
 // svg.on('mousemove', svgMouseMove);
 window.addEventListener('scroll', onScroll, false);
 
-setTimeout(update, 1000);
+setTimeout(update, 1500);
+setTimeout(setup, 1000)
