@@ -1,25 +1,29 @@
 var onScroll = function(e) {
+  update();
+};
+
+var update = function(data) {
   var divs = $('.photo-container');
-  startCoords = []
+  startCoords = [];
+  endCoords = [];
+  var data = [];
   for (var i = 0; i < divs.length; i++) {
     $div = $(divs[i]);
     startCoords.push(
       {"y": $div.offset().top + $div.height() / 2 - $(window).scrollTop(),
        "x": $div.offset().left + $div.width() - $(window).scrollLeft()});
+
+    $elem = $('#gmimap' + i).prev();
+    endCoords.push({"y": $elem.offset().top + $elem.height() - $(window).scrollTop(),
+       "x": $elem.offset().left + $elem.width() / 2 - $(window).scrollLeft()});
   }
   
-  var data = [[startCoords[0], {"x": 705, "y": 95}], [startCoords[1], {"x": 810, "y": 250}], [startCoords[2], {"x": 825, "y": 252}], [startCoords[3], {"x": 827, "y": 454}]];
-  update(data);
-};
+  // Create the line endpoints
+  for (var i = 0; i < startCoords.length; i++) {
+    data.push ([startCoords[i], endCoords[i]]);
+  }
 
-var svgMouseMove = function() {
-  var m = d3.mouse(this);
 
-  var data = [[startCoords[0], {"x": m[0], "y": m[1]}], [startCoords[1], {"x": m[0], "y": m[1]}], [startCoords[2], {"x": m[0], "y": m[1]}]];
-  update(data);
-};
-
-var update = function(data) {
   var line = d3.svg.line()
     .interpolate(interpolateSankey)
     .x(function(d) { return d.x; })
@@ -53,3 +57,5 @@ function interpolateSankey(points) {
 var svg = d3.select("svg");
 // svg.on('mousemove', svgMouseMove);
 window.addEventListener('scroll', onScroll, false);
+
+setTimeout(update, 1000);

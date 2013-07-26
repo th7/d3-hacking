@@ -17,22 +17,30 @@ body {
 
 .photo-container {
   width: 500px;
-  /*background-size: cover;*/
   z-index: 1000;
+  margin: 50px;
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#fcfcfc), to(#bfbfbf), color-stop(3%, #f7f7f7), color-stop(12%, #f2f2f2), color-stop(90%, #d9d9d9));
+  background-image: -webkit-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  background-image: -o-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  background-image: -ms-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  background-image: linear-gradient(to bottom, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  -webkit-box-shadow: 0 0 19px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 19px rgba(0,0,0,0.5);
+  box-shadow: 0 0 19px rgba(0,0,0,0.5);
+
 }
 
 .photo {
   width: 100%;
-  padding: 50px;
 }
 
 .main-svg {
-  /*position: fixed;*/
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2000;
 }
 
 html { 
@@ -48,6 +56,7 @@ body {
 .map-wrapper {
   height: 100%; 
   width: 100%;
+  margin-top: -50px;
   /*left: 600px;*/
   position: fixed;
   z-index: -1000;
@@ -56,5 +65,4 @@ body {
 #map-canvas {
   height: 100%; 
   width: 100%;
-  /*z-index: -1000;*/
 }
